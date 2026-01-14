@@ -1,209 +1,191 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trà Hoa Chè - Trợ Lý Cảm Xúc</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trà Hoa Chè - Trợ Lý Ảo</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<style>
-/* ... (GIỮ NGUYÊN PHẦN STYLE CSS) ... */
+    <style>
+        :root {
+            --primary-color: #2f6b3c;
+            --accent-color: #e6b800;
+            --bg-overlay: rgba(255, 255, 255, 0.92);
+        }
 
-:root {
-    --primary-color: #2f6b3c; /* Màu xanh lá cây của trà */
-    --accent-color: #e6b800; /* Màu vàng điểm nhấn (dùng cho CTA) */
-    --bg-overlay: rgba(255, 255, 255, 0.92); /* Lớp phủ trắng mờ */
-}
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 10px;
+            box-sizing: border-box;
+        }
 
-body {
-    margin: 0;
-    font-family: 'Nunito', sans-serif;
-    
-    /* Dùng ảnh nền của bạn và thêm lớp phủ mờ (0.3) để chữ dễ đọc */
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px 10px;
-    box-sizing: border-box;
-}
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--bg-overlay);
+            border-radius: 24px;
+            padding: 30px 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
-.container {
-    width: 100%;
-    max-width: 400px;
-    background: var(--bg-overlay);
-    border-radius: 24px;
-    padding: 30px 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-    position: relative;
-    overflow: hidden;
-}
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-/* Header */
-.header {
-    text-align: center;
-    margin-bottom: 25px;
-}
-.logo-placeholder {
-    width: 60px;
-    height: 60px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 24px;
-}
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    margin: 0;
-    color: var(--primary-color);
-    line-height: 1.3;
-}
-.subtitle {
-    font-size: 14px;
-    color: #666;
-    margin-top: 5px;
-}
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
 
-/* Options (Nút lựa chọn) */
-.options-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.btn-option {
-    padding: 15px;
-    border: 1px solid #cce3d0;
-    border-radius: 16px;
-    background: white;
-    color: var(--primary-color);
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-align: left;
-    font-family: 'Nunito', sans-serif;
-}
-.btn-option i {
-    font-size: 20px;
-    color: #4CAF50;
-}
-.btn-option:hover, .btn-option.active {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(47, 107, 60, 0.2);
-}
-.btn-option:hover i, .btn-option.active i {
-    color: white;
-}
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin: 0;
+            color: var(--primary-color);
+            line-height: 1.3;
+            text-transform: uppercase;
+        }
 
-/* Result Area */
-.result-box {
-    display: none;
-    margin-top: 25px;
-    animation: fadeIn 0.5s ease;
-}
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
 
-.ai-card {
-    background: #f1f8f3;
-    border-radius: 16px;
-    padding: 20px;
-    border-left: 4px solid var(--primary-color);
-}
-.ai-text {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: justify;
-}
-.audio-player {
-    width: 100%;
-    /* Sử dụng giao diện audio mặc định của trình duyệt */
-    height: 40px; 
-    outline: none;
-}
+        .video-wrapper {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        video {
+            width: 100%;
+            display: block;
+        }
 
-/* Loading Spinner (Giả lập AI đang làm việc) */
-.loading {
-    display: none;
-    text-align: center;
-    padding: 20px;
-}
-.spinner {
-    width: 30px;
-    height: 30px;
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
-}
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-/* Map & Footer */
-.map-section {
-    margin-top: 30px;
-    border-top: 1px dashed #ccc;
-    padding-top: 20px;
-}
-.map-btn-group {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto; /* Cho phép cuộn ngang nếu có nhiều nút */
-    padding-bottom: 5px;
-}
-.btn-small {
-    white-space: nowrap;
-    padding: 8px 16px;
-    border-radius: 20px;
-    border: 1px solid var(--primary-color);
-    background: transparent;
-    color: var(--primary-color);
-    font-size: 13px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.btn-small:hover {
-    background: var(--primary-color);
-    color: white;
-}
+        .btn-option {
+            padding: 15px;
+            border: 1px solid #cce3d0;
+            border-radius: 16px;
+            background: white;
+            color: var(--primary-color);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+            font-family: 'Nunito', sans-serif;
+        }
 
-.cta-button {
-    display: block;
-    width: 100%;
-    margin-top: 25px;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--accent-color), #f0c419);
-    color: #333;
-    text-align: center;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 800;
-    box-shadow: 0 5px 15px rgba(230, 184, 0, 0.3);
-    transition: opacity 0.2s;
-}
-.cta-button:hover {
-    opacity: 0.9;
-}
-</style>
+        .btn-option i {
+            font-size: 18px;
+            color: #4CAF50;
+        }
+
+        .btn-option:hover, .btn-option.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-option:hover i, .btn-option.active i {
+            color: white;
+        }
+
+        .result-box {
+            display: none;
+            margin-top: 25px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .ai-card {
+            background: #f1f8f3;
+            border-radius: 16px;
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .ai-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .audio-player {
+            width: 100%;
+            height: 35px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            margin-top: 25px;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--accent-color), #f0c419);
+            color: #333;
+            text-align: center;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            box-shadow: 0 5px 15px rgba(230, 184, 0, 0.3);
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 
@@ -211,26 +193,33 @@ h1 {
     <div class="header">
         <div class="logo-placeholder"><i class="fas fa-leaf"></i></div>
         <h1>TRÀ HOA CHÈ</h1>
-        <p class="subtitle">Trợ lý cảm xúc & Hướng dẫn viên du lịch ảo</p>
+        <p class="subtitle">TRỢ LÝ ẢO GIÚP KHÁM PHÁ SẢN PHẨM</p>
     </div>
 
-    <p style="text-align:center; margin-bottom: 20px; font-weight: 600; color: #444;">Bạn đang muốn khám phá hương vị nào?</p>
+    <div class="video-wrapper">
+        <video autoplay muted loop playsinline>
+            <source src="quy-trinh-hoa-che.mp4" type="video/mp4">
+            Trình duyệt không hỗ trợ video.
+        </video>
+    </div>
+
+    <p style="text-align:center; margin-bottom: 20px; font-weight: 600; color: #444; font-size: 14px;">Hãy lựa chọn nội dung bạn muốn biết</p>
 
     <div class="options-grid">
         <button class="btn-option" onclick="processChoice('hill', this)">
-            <i class="fas fa-sun"></i> Khám phá năng lượng tươi mới
+            <i class="fas fa-mug-hot"></i> Cách pha ấm trà chuẩn vị
         </button>
         <button class="btn-option" onclick="processChoice('village', this)">
-            <i class="fas fa-history"></i> Tìm hiểu văn hóa làng nghề
+            <i class="fas fa-star"></i> Tác dụng nổi bật của trà
         </button>
         <button class="btn-option" onclick="processChoice('relax', this)">
-            <i class="fas fa-spa"></i> Muốn thư giãn, bình yên
+            <i class="fas fa-info-circle"></i> Một số lưu ý khi sử dụng
         </button>
     </div>
 
     <div class="loading" id="loadingBox">
         <div class="spinner"></div>
-        <p style="font-size: 13px; color: #666;">AI đang kết nối với đồi chè...</p>
+        <p style="font-size: 13px; color: #666;">AI đang trích xuất dữ liệu...</p>
     </div>
 
     <div class="result-box" id="resultBox">
@@ -244,26 +233,12 @@ h1 {
         </div>
     </div>
 
-    <div class="map-section">
-        <p style="text-align:center; font-weight:700; color:var(--primary-color); margin-bottom:15px;">
-            <i class="fas fa-map-marked-alt"></i> Khám phá vùng đất chè Thái Nguyên
-        </p>
-        <div class="map-btn-group">
-            <button class="btn-small" onclick="openLink('https://www.google.com/maps/search/Đồi+chè+Tân+Cương+Thái+Nguyên')">Đồi chè Tân Cương</button>
-            <button class="btn-small" onclick="openLink('https://www.google.com/maps/search/Làng+nghề+chè+Đại+Từ+Thái+Nguyên')">Làng nghề Đại Từ</button>
-            <button class="btn-small" onclick="openLink('https://www.google.com/maps/search/Đồi+chè+Phú+Lương+Thái+Nguyên')">Khu du lịch La Bằng</button>
-        </div>
-    </div>
-
-    <a href="https://zalo.me/0987654321" class="cta-button">
-        <i class="fas fa-comment-dots"></i> Chat Zalo/Tư vấn ngay
+    <a href="https://zalo.me/0395683804" class="cta-button">
+        <i class="fas fa-comment-dots"></i> TƯ VẤN- ĐẶT MUA SẢN PHẨM
     </a>
 </div>
 
 <script>
-    /* --------------------------
-       Logic xử lý tương tác (GIỮ NGUYÊN)
-       -------------------------- */
     function processChoice(type, btnElement) {
         document.querySelectorAll('.btn-option').forEach(b => b.classList.remove('active'));
         btnElement.classList.add('active');
@@ -273,7 +248,7 @@ h1 {
 
         setTimeout(() => {
             showResult(type);
-        }, 1500);
+        }, 1200);
     }
 
     function showResult(type) {
@@ -281,17 +256,17 @@ h1 {
         let audioSrc = "";
 
         if (type === "hill") {
-            text = "Năng lượng buổi sáng tại **Đồi chè Tân Cương** là tuyệt vời nhất! Hãy tưởng tượng hương trà tươi xộc vào mũi, đánh thức mọi giác quan. Đừng quên pha gói trà bạn đang cầm với nước 85 độ C để cảm nhận vị cốm non trọn vẹn nhất.";
-            audioSrc = "doi-che.mp3"; 
+            text = "<b>Cách pha:</b> Chuẩn bị 3-5 bông hoa chè khô và táo đỏ. <b>Tráng trà:</b> Rót nước sôi vào rồi đổ đi ngay để làm sạch. <b>Hãm trà:</b> Rót 300ml nước sôi (90-95°C), ủ trong 10-15 phút. Thưởng thức khi còn ấm để cảm nhận vị ngọt thanh.";
+            audioSrc = "cach-pha.mp3"; 
         } else if (type === "village") {
-            text = "Bạn là người sâu sắc! Về với **Làng nghề chè**, ngồi bên bếp lửa nghe nghệ nhân kể chuyện sao chè bằng tay. Vị trà tiền chát hậu ngọt chính là triết lý sống của người Thái Nguyên. Hãy tận hưởng tách trà của mình thật chậm rãi.";
-            audioSrc = "lang-nghe.mp3"; 
+            text = "<b>Tác dụng:</b> Giúp thanh nhiệt, giải độc gan, hỗ trợ tiêu hóa. Đặc biệt tốt cho tim mạch, giúp ổn định huyết áp và Cholesterol. Trà còn có tác dụng an thần, giúp bạn ngủ sâu giấc và hỗ trợ giảm cân tự nhiên.";
+            audioSrc = "tac-dung.mp3"; 
         } else if (type === "relax") {
-            text = "Hít sâu nào... Hãy thả lỏng vai. Một tách trà ấm và không gian yên tĩnh tại các khu **Ecotourism** sẽ chữa lành tâm hồn bạn. Hãy chọn một góc bình yên, nhấp một ngụm trà và để tâm trí được nghỉ ngơi.";
-            audioSrc = "thu-gian.mp3";
+            text = "<b>Lưu ý:</b> Nên uống sau bữa ăn 30 phút hoặc trước khi ngủ 1 tiếng. Tránh uống khi đói. Đối với phụ nữ mang thai hoặc người bị tiểu đường (khi dùng thêm đường phèn), hãy tham khảo ý kiến chuyên gia.";
+            audioSrc = "luu-y.mp3";
         }
 
-        document.getElementById('resultText').innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>'); 
+        document.getElementById('resultText').innerHTML = text; 
         
         let player = document.getElementById('audioPlayer');
         player.src = audioSrc;
@@ -299,10 +274,6 @@ h1 {
         
         document.getElementById('loadingBox').style.display = 'none';
         document.getElementById('resultBox').style.display = 'block';
-    }
-
-    function openLink(url) {
-        window.open(url, '_blank');
     }
 </script>
 
