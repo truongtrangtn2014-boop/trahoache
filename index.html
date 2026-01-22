@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trà Hoa Chè - Trợ Lý Ảo</title>
+    <title>An Trà Hoa - Trợ Lý Ảo</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,7 +12,7 @@
         :root {
             --primary-color: #2f6b3c;
             --accent-color: #e6b800;
-            --bg-overlay: rgba(255, 255, 255, 0.92);
+            --bg-overlay: rgba(255, 255, 255, 0.95);
         }
 
         body {
@@ -32,7 +32,7 @@
 
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 450px;
             background: var(--bg-overlay);
             border-radius: 24px;
             padding: 30px 20px;
@@ -87,31 +87,40 @@
             display: block;
         }
 
+        .instruction-text {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #2f6b3c;
+            font-size: 15px;
+        }
+
         .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .btn-option {
-            padding: 15px;
+            padding: 12px 8px;
             border: 1px solid #cce3d0;
-            border-radius: 16px;
+            border-radius: 12px;
             background: white;
             color: var(--primary-color);
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
-            text-align: left;
+            text-align: center;
+            gap: 8px;
             font-family: 'Nunito', sans-serif;
         }
 
         .btn-option i {
-            font-size: 18px;
+            font-size: 16px;
             color: #4CAF50;
         }
 
@@ -119,7 +128,6 @@
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
-            transform: translateY(-2px);
         }
 
         .btn-option:hover i, .btn-option.active i {
@@ -128,39 +136,50 @@
 
         .result-box {
             display: none;
-            margin-top: 25px;
+            margin-top: 20px;
             animation: fadeIn 0.5s ease;
         }
 
         .ai-card {
             background: #f1f8f3;
             border-radius: 16px;
-            padding: 20px;
-            border-left: 4px solid var(--primary-color);
+            padding: 18px;
+            border-left: 5px solid var(--primary-color);
         }
 
-        .ai-text {
+        .ai-title {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 17px;
+            border-bottom: 1px solid #d1e2d5;
+            padding-bottom: 5px;
+        }
+
+        .ai-content {
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.5;
             color: #333;
-            margin-bottom: 15px;
-            text-align: justify;
         }
 
-        .audio-player {
-            width: 100%;
-            height: 35px;
+        .ai-section {
+            margin-bottom: 10px;
+        }
+
+        .ai-label {
+            font-weight: 700;
+            color: #2f6b3c;
+            display: block;
         }
 
         .loading {
             display: none;
             text-align: center;
-            padding: 20px;
+            padding: 15px;
         }
 
         .spinner {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             border: 3px solid #f3f3f3;
             border-top: 3px solid var(--primary-color);
             border-radius: 50%;
@@ -174,8 +193,8 @@
         .cta-button {
             display: block;
             width: 100%;
-            margin-top: 25px;
-            padding: 16px;
+            margin-top: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, var(--accent-color), #f0c419);
             color: #333;
             text-align: center;
@@ -192,8 +211,8 @@
 <div class="container">
     <div class="header">
         <div class="logo-placeholder"><i class="fas fa-leaf"></i></div>
-        <h1>TRÀ HOA CHÈ</h1>
-        <p class="subtitle">TRỢ LÝ ẢO GIÚP KHÁM PHÁ SẢN PHẨM</p>
+        <h1>AN TRÀ HOA</h1>
+        <p class="subtitle">Trợ lý ảo tìm hiểu sản phẩm</p>
     </div>
 
     <div class="video-wrapper">
@@ -203,77 +222,105 @@
         </video>
     </div>
 
-    <p style="text-align:center; margin-bottom: 20px; font-weight: 600; color: #444; font-size: 14px;">Hãy lựa chọn nội dung bạn muốn biết</p>
+    <p class="instruction-text">Hãy cùng tôi khám phá các vị của An Trà Hoa</p>
 
     <div class="options-grid">
-        <button class="btn-option" onclick="processChoice('hill', this)">
-            <i class="fas fa-mug-hot"></i> Cách pha ấm trà chuẩn vị
+        <button class="btn-option" onclick="processChoice('v1', this)">
+            <i class="fas fa-seedling"></i> Vị Truyền Thống
         </button>
-        <button class="btn-option" onclick="processChoice('village', this)">
-            <i class="fas fa-star"></i> Tác dụng nổi bật của trà
+        <button class="btn-option" onclick="processChoice('v2', this)">
+            <i class="fas fa-heart"></i> Táo Đỏ Cỏ Ngọt
         </button>
-        <button class="btn-option" onclick="processChoice('relax', this)">
-            <i class="fas fa-info-circle"></i> Một số lưu ý khi sử dụng
+        <button class="btn-option" onclick="processChoice('v3', this)">
+            <i class="fas fa-cube"></i> Táo Đỏ Đ.Phèn
+        </button>
+        <button class="btn-option" onclick="processChoice('v4', this)">
+            <i class="fas fa-apple-alt"></i> Vị Táo Đỏ
+        </button>
+        <button class="btn-option" onclick="processChoice('v5', this)">
+            <i class="fas fa-sucrose"></i> Vị Đường Phèn
+        </button>
+        <button class="btn-option" onclick="processChoice('v6', this)">
+            <i class="fas fa-leaf"></i> Vị Cỏ Ngọt
         </button>
     </div>
 
     <div class="loading" id="loadingBox">
         <div class="spinner"></div>
-        <p style="font-size: 13px; color: #666;">AI đang trích xuất dữ liệu...</p>
+        <p style="font-size: 12px; color: #666;">Đang lấy thông tin sản phẩm...</p>
     </div>
 
     <div class="result-box" id="resultBox">
         <div class="ai-card">
-            <h3 style="margin: 0 0 10px 0; color: var(--primary-color); font-size: 16px;">✨ Gợi ý dành cho bạn:</h3>
-            <div id="resultText" class="ai-text"></div>
-            <audio id="audioPlayer" class="audio-player" controls>
-                <source src="" type="audio/mpeg">
-                Trình duyệt không hỗ trợ.
-            </audio>
+            <h3 id="resTitle" class="ai-title"></h3>
+            <div id="resBody" class="ai-content"></div>
         </div>
     </div>
 
     <a href="https://zalo.me/0395683804" class="cta-button">
-        <i class="fas fa-comment-dots"></i> TƯ VẤN- ĐẶT MUA SẢN PHẨM
+        <i class="fas fa-comment-dots"></i> Nhận tư vấn & Đặt hàng ngay
     </a>
 </div>
 
 <script>
-    function processChoice(type, btnElement) {
+    const data = {
+        'v1': {
+            title: " An Trà Hoa vị truyền thống",
+            weight: "Hoa chè tự nhiên (300 mg).",
+            usage: "• Thanh lọc cơ thể, làm dịu tinh thần<br>• Hỗ trợ an thần, dễ ngủ<br>• Giữ trọn hương vị mộc mạc của hoa chè",
+            guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, dùng khi trà còn ấm."
+        },
+        'v2': {
+            title: " An Trà Hoa vị táo đỏ cỏ ngọt",
+            weight: "Hoa chè (300mg), táo đỏ (100mg), cỏ ngọt (4mg).",
+            usage: "• Bổ sung năng lượng nhẹ nhàng<br>• Giúp ngủ ngon, giảm căng thẳng<br>• Vị ngọt thanh tự nhiên, không đường",
+            guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, dùng khi trà còn ấm."
+        },
+        'v3': {
+            title: " An Trà Hoa vị táo đỏ đường phèn",
+            weight: "Hoa chè (300mg), táo đỏ (100mg), đường phèn (4g).",
+            usage: "• Bồi bổ cơ thể, làm ấm<br>• Hỗ trợ tuần hoàn và giấc ngủ<br>• Vị ngọt dịu, dễ uống",
+            guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, khuấy nhẹ cho tan đường phèn, dùng khi trà còn ấm."
+        },
+        'v4': {
+            title: " An Trà Hoa vị táo đỏ",
+            weight: "Hoa chè (300mg), táo đỏ (100mg).",
+            usage: "• Giúp thư giãn, giảm mệt mỏi<br>• Hỗ trợ giấc ngủ sâu<br>• Vị thanh, hơi ngọt tự nhiên từ táo đỏ",
+            guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, dùng khi trà còn ấm."
+        },
+        'v5': {
+            title: " An Trà Hoa vị đường phèn",
+            weight: "Hoa chè (300mg), đường phèn (4g).",
+            usage: "• Làm dịu cổ họng<br>• Giúp tinh thần thư thái<br>• Phù hợp người thích vị ngọt nhẹ, truyền thống",
+            guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, khuấy nhẹ cho tan đường phèn, dùng khi trà còn ấm."
+        },
+        'v6': {
+            title: "An Trà Hoa vị cỏ ngọt",
+            weight: "Hoa chè (300mg), cỏ ngọt (4mg).",
+            usage: "• Không đường, phù hợp người ăn kiêng<br>• Hỗ trợ an thần, ngủ ngon<br>• Vị ngọt nhẹ tự nhiên, thanh mát",
+            guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, dùng khi trà còn ấm."
+        }
+    };
+
+    function processChoice(id, btn) {
         document.querySelectorAll('.btn-option').forEach(b => b.classList.remove('active'));
-        btnElement.classList.add('active');
+        btn.classList.add('active');
 
         document.getElementById('resultBox').style.display = 'none';
         document.getElementById('loadingBox').style.display = 'block';
 
         setTimeout(() => {
-            showResult(type);
-        }, 1200);
-    }
-
-    function showResult(type) {
-        let text = "";
-        let audioSrc = "";
-
-        if (type === "hill") {
-            text = "<b>Cách pha:</b> Chuẩn bị 3-5 bông hoa chè khô và táo đỏ. <b>Tráng trà:</b> Rót nước sôi vào rồi đổ đi ngay để làm sạch. <b>Hãm trà:</b> Rót 300ml nước sôi (90-95°C), ủ trong 10-15 phút. Thưởng thức khi còn ấm để cảm nhận vị ngọt thanh.";
-            audioSrc = "cach-pha.mp3"; 
-        } else if (type === "village") {
-            text = "<b>Tác dụng:</b> Giúp thanh nhiệt, giải độc gan, hỗ trợ tiêu hóa. Đặc biệt tốt cho tim mạch, giúp ổn định huyết áp và Cholesterol. Trà còn có tác dụng an thần, giúp bạn ngủ sâu giấc và hỗ trợ giảm cân tự nhiên.";
-            audioSrc = "tac-dung.mp3"; 
-        } else if (type === "relax") {
-            text = "<b>Lưu ý:</b> Nên uống sau bữa ăn 30 phút hoặc trước khi ngủ 1 tiếng. Tránh uống khi đói. Đối với phụ nữ mang thai hoặc người bị tiểu đường (khi dùng thêm đường phèn), hãy tham khảo ý kiến chuyên gia.";
-            audioSrc = "luu-y.mp3";
-        }
-
-        document.getElementById('resultText').innerHTML = text; 
-        
-        let player = document.getElementById('audioPlayer');
-        player.src = audioSrc;
-        player.load();
-        
-        document.getElementById('loadingBox').style.display = 'none';
-        document.getElementById('resultBox').style.display = 'block';
+            const item = data[id];
+            document.getElementById('resTitle').innerText = item.title;
+            document.getElementById('resBody').innerHTML = `
+                <div class="ai-section"><span class="ai-label">📍 Định lượng:</span> ${item.weight}</div>
+                <div class="ai-section"><span class="ai-label">✨ Công dụng:</span> ${item.usage}</div>
+                <div class="ai-section"><span class="ai-label">☕ Hướng dẫn:</span> ${item.guide}</div>
+            `;
+            
+            document.getElementById('loadingBox').style.display = 'none';
+            document.getElementById('resultBox').style.display = 'block';
+        }, 600);
     }
 </script>
 
