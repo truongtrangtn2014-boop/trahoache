@@ -30,6 +30,54 @@
             box-sizing: border-box;
         }
 
+        /* --- MÀN HÌNH CHÀO MỪNG (OVERLAY) --- */
+        #welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(47, 107, 60, 0.95); /* Màu xanh thương hiệu */
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        .welcome-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .start-btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- KẾT THÚC CSS OVERLAY --- */
+
         .container {
             width: 100%;
             max-width: 450px;
@@ -39,7 +87,11 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             position: relative;
             overflow: hidden;
+            display: none; /* Ẩn tạm thời chờ bấm nút bắt đầu */
+            animation: fadeInPage 0.8s ease;
         }
+
+        @keyframes fadeInPage { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
         .header {
             text-align: center;
@@ -208,7 +260,18 @@
 </head>
 <body>
 
-<div class="container">
+<div id="welcome-overlay">
+    <div class="welcome-content">
+        <div style="font-size: 40px; margin-bottom: 20px;"><i class="fas fa-leaf"></i></div>
+        <h1>AN TRÀ HOA</h1>
+        <p>Hãy cùng trợ lý ảo khám phá sản phẩm</p>
+        <button class="start-btn" onclick="enterSite()">
+            <i class="fas fa-play"></i> BẮT ĐẦU KHÁM PHÁ
+        </button>
+    </div>
+</div>
+
+<div class="container" id="mainContainer">
     <div class="header">
         <div class="logo-placeholder"><i class="fas fa-leaf"></i></div>
         <h1>AN TRÀ HOA</h1>
@@ -216,7 +279,7 @@
     </div>
 
     <div class="video-wrapper">
-        <video autoplay muted loop playsinline>
+        <video id="introVideo" loop playsinline>
             <source src="quy-trinh-hoa-che.mp4" type="video/mp4">
             Trình duyệt không hỗ trợ video.
         </video>
@@ -263,33 +326,55 @@
 </div>
 
 <script>
+    // HÀM XỬ LÝ VÀO TRANG (Để bật âm thanh)
+    function enterSite() {
+        const overlay = document.getElementById('welcome-overlay');
+        const container = document.getElementById('mainContainer');
+        const video = document.getElementById('introVideo');
+
+        // Ẩn màn hình chào
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+            overlay.style.display = 'none';
+        }, 500);
+
+        // Hiện nội dung chính
+        container.style.display = 'block';
+
+        // Bật video có tiếng
+        video.muted = false; // Đảm bảo tiếng được bật
+        video.play().catch(error => {
+            console.log("Trình duyệt vẫn chặn autoplay: ", error);
+        });
+    }
+
     const data = {
         'v1': {
-            title: " An Trà Hoa vị truyền thống",
+            title: "An Trà Hoa vị truyền thống",
             weight: "Hoa chè tự nhiên (300 mg).",
             usage: "• Thanh lọc cơ thể, làm dịu tinh thần<br>• Hỗ trợ an thần, dễ ngủ<br>• Giữ trọn hương vị mộc mạc của hoa chè",
             guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, dùng khi trà còn ấm."
         },
         'v2': {
-            title: " An Trà Hoa vị táo đỏ cỏ ngọt",
+            title: "An Trà Hoa vị táo đỏ cỏ ngọt",
             weight: "Hoa chè (300mg), táo đỏ (100mg), cỏ ngọt (4mg).",
             usage: "• Bổ sung năng lượng nhẹ nhàng<br>• Giúp ngủ ngon, giảm căng thẳng<br>• Vị ngọt thanh tự nhiên, không đường",
             guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, dùng khi trà còn ấm."
         },
         'v3': {
-            title: " An Trà Hoa vị táo đỏ đường phèn",
+            title: "An Trà Hoa vị táo đỏ đường phèn",
             weight: "Hoa chè (300mg), táo đỏ (100mg), đường phèn (4g).",
             usage: "• Bồi bổ cơ thể, làm ấm<br>• Hỗ trợ tuần hoàn và giấc ngủ<br>• Vị ngọt dịu, dễ uống",
             guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, khuấy nhẹ cho tan đường phèn, dùng khi trà còn ấm."
         },
         'v4': {
-            title: " An Trà Hoa vị táo đỏ",
+            title: "An Trà Hoa vị táo đỏ",
             weight: "Hoa chè (300mg), táo đỏ (100mg).",
             usage: "• Giúp thư giãn, giảm mệt mỏi<br>• Hỗ trợ giấc ngủ sâu<br>• Vị thanh, hơi ngọt tự nhiên từ táo đỏ",
             guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, dùng khi trà còn ấm."
         },
         'v5': {
-            title: " An Trà Hoa vị đường phèn",
+            title: "An Trà Hoa vị đường phèn",
             weight: "Hoa chè (300mg), đường phèn (4g).",
             usage: "• Làm dịu cổ họng<br>• Giúp tinh thần thư thái<br>• Phù hợp người thích vị ngọt nhẹ, truyền thống",
             guide: "Pha 1 gói trà với 210ml nước nóng ~90°C trong 5–7 phút, khuấy nhẹ cho tan đường phèn, dùng khi trà còn ấm."
